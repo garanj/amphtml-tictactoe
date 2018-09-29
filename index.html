@@ -1,0 +1,311 @@
+<!--
+     This is the minimum valid AMP HTML document. Just type away
+     here and the AMP Playground will render your document on the fly.
+-->
+<!doctype html>
+<html ⚡>
+<head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://garanj.github.io/amphtml-tictactoe/index.html" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async custom-element="amp-analytics"
+    src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <style amp-custom>
+    body {
+      font-family: sans-serif;
+      color: #b60845;
+    }
+    @media only screen and (min-width : 900px) {
+      body {
+        font-family: sans-serif;
+        font-size: 18px;
+        color: #b60845;
+      }
+    }
+    h1 {
+      font-size: 2em;
+    }
+    table {
+      margin: 16px;
+      border: 0;
+      border-collapse: collapse;
+    }
+    td {
+      border: 0;
+      padding: 0;
+    }
+    .main-content {
+      margin: 16px;
+    }
+    .cell {
+      width: 10vw;
+      height: 10vw;
+      border-color: #b60845;
+      border-style: solid;
+      border: 0;
+    }
+    @media only screen and (min-width : 900px) {
+      .cell {
+        width: 100px;
+        height: 100px;
+        border-color: #b60845;
+        border-style: solid;
+        border: 0;
+      }
+    }
+    .cell-vert {
+      border-left: 5px solid #b60845;
+      border-right: 5px solid #b60845; 
+    }
+    .cell-horiz {
+      border-top: 5px solid #b60845;
+      border-bottom: 5px solid #b60845; 
+    }
+    .win {
+      background: lightgrey;
+    }
+    .in-play {
+      background: none;
+    }
+    .hide {
+      display: none;
+    }
+    .show {
+      display: show;
+    }
+    .grid-button {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0px;
+      font-size: 6vw;
+      padding: 0;
+      margin: 0;
+    }
+    @media only screen and (min-width : 900px) {
+      .grid-button {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        box-shadow: none;
+        border-radius: 0px;
+        font-size: 48px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .reset-button {
+      font-size: 1rem;
+      line-height: 1.125rem;
+      padding: .7em .8em;
+      text-decoration: none;
+      white-space: nowrap;
+      word-wrap: normal;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #fff;
+      color: #b60845;
+      border: 1px solid #b60845
+    }
+  </style>
+</head>
+<body>
+  <amp-state id="g">
+    <script type="application/json">
+    {
+      "-1": "O",
+      "1": "⚡",
+      "p": 1
+    }
+    </script>
+  </amp-state>
+ 
+  <amp-analytics type="googleanalytics">
+  <script type="application/json">
+  {
+    "vars": {
+      "account": "UA-109668606-1"
+    },
+    "triggers": {
+      "trackPageview": {
+        "on": "visible",
+        "request": "pageview"
+      }
+    }
+  }
+  </script>
+  </amp-analytics>
+     
+  <div class="main-content">
+    <h1>imp-⚡-omp</h1>
+       <p><em>Put ⚡ in the centre square...</em></p>
+  <table>
+    <tr>
+      <td class="cell"><button on="tap:AMP.setState({
+                tr: tr + g.p,
+                lc: lc + g.p,
+                bd: bd + g.p,
+                b: {
+                  a: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.a ? b.a : ""'
+                  [class]='max(abs(tr),abs(lc),abs(bd + c)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.a || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td> 
+      <td class="cell cell-vert"><button on="tap:AMP.setState({
+                tr: tr + g.p,
+                mc: mc + g.p,
+                b: {
+                  b: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.b ? b.b : ""'
+                  [class]='max(abs(tr),abs(mc + c)) == 3 ? "grid-button win" : "grid-button in-play"' 
+                  [disabled]='b.b || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td> 
+      <td class="cell"><button on="tap:AMP.setState({
+                tr: tr + g.p,
+                rc: rc + g.p,
+                fd: fd + g.p,
+                b: {
+                  c: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.c ? b.c : ""'
+                  [class]='max(abs(tr),abs(rc),abs(fd + c)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.c || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td> 
+    </tr>
+    <tr>
+      <td class="cell cell-horiz"><button on="tap:AMP.setState({
+                mr: mr + g.p,
+                lc: lc + g.p,
+                b: {
+                  d: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.d ? b.d : ""'
+                  [class]='max(abs(mr + c),abs(lc)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.d || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td> 
+      <td class="cell cell-horiz cell-vert"><button on="tap:AMP.setState({
+                c: c + g.p,
+                b: {
+                  e: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.e ? b.e : ""'
+                  [class]='max(abs(mr + c),abs(mc + c),abs(fd + c),abs(bd + c)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.e || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td> 
+      <td class="cell cell-horiz"><button on="tap:AMP.setState({
+                mr: mr + g.p,
+                rc: rc + g.p,
+                b: {
+                  f: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.f ? b.f : ""'
+                  [class]='max(abs(mr + c),abs(rc)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.f || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td>  
+    </tr>
+    <tr>
+      <td class="cell"><button on="tap:AMP.setState({
+                br: br + g.p,
+                lc: lc + g.p,
+                fd: fd + g.p,
+                b: {
+                  g: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.g ? b.g : ""'
+                  [class]='max(abs(br),abs(lc),abs(fd + c)) == 3 ? "grid-button win" : "grid-button in-play"' 
+                  [disabled]='b.g || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td> 
+      <td class="cell cell-vert"><button on="tap:AMP.setState({
+                br: br + g.p,
+                mc: mc + g.p,
+                b: {
+                  h: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.h ? b.h : ""'
+                  [class]='max(abs(br),abs(mc + c)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.h || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td>  
+      <td class="cell"><button on="tap:AMP.setState({
+                br: br + g.p,
+                rc: rc + g.p,
+                bd: bd + g.p,
+                b: {
+                  i: g[g.p]
+                },
+                g: {
+                  p: g.p * -1
+                }
+              })" [text]='b.i ? b.i : ""'
+                  [class]='max(abs(br),abs(rc), abs(bd + c)) == 3 ? "grid-button win" : "grid-button in-play"'
+                  [disabled]='b.i || max(abs(tr),abs(br),abs(lc),abs(rc),abs(fd + c),abs(bd + c),abs(mc + c),abs(mr + c)) == 3'
+                  class='grid-button in-play'
+      ></button></td>  
+    </tr>
+  </table>
+  <p [class]="max(tr,br,lc,rc,fd + c,bd + c,mc + c,mr + c) == 3 ? 'show' : 'hide'" class='hide'>⚡ wins!!!</p>
+  <p [class]="min(tr,br,lc,rc,fd + c,bd + c,mc + c,mr + c) == -3 ? 'show' : 'hide'" class='hide'>O wins!!!</p>
+  
+  <button class="reset-button" on='tap:AMP.setState({
+                "g": {
+                  "-1": "O",
+                  "1": "⚡",
+                  "p": 1  
+                },
+                tr: null,
+                mr: null,
+                br: null,
+                lc: null,
+                mc: null,
+                rc: null,
+                fd: null,
+                bd: null,
+                c: null,
+                b: null
+              })'>Reset</button>
+   <p><a href="http://plemont.github.io/amp/2017/11/12/put-amp-in-the-centre-square.html">(Why?...)</a></p>
+  </div>
+</body>
+</html>
+
+
+
+
+
